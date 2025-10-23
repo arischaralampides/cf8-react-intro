@@ -1,23 +1,19 @@
-// import ViteIntro from "./components/ViteIntro/ViteIntro.tsx"
+/// import ViteIntro from "./components/ViteIntro/ViteIntro.tsx"
 // import ClassComponent from "./components/ClassComponent.tsx";
 // import FunctionalComponent from "./components/FunctionalComponent.tsx";
 // import ArrowFunctionalComponent from "./components/ArrowFunctionalComponent.tsx";
 // import ArrowFunctionalComponentWithProps from "./components/ArrowFunctionalComponentWithProps.tsx";
 // import ArrowFunctionalComponentWithPropsType from "./components/ArrowFunctionalComponentWithPropsType.tsx";
 // import Card from "./components/Card.tsx";
-import Layout from "./components/Layout.tsx";
+// import Layout from "./components/Layout.tsx";
 // import WindowSize from "./components/WindowSize.tsx";
 // import FocusInput from "./components/FocusInput.tsx";
 // import PreviewsValue from "./components/PreviousValue.tsx";
 // import CounterWithRef from "./components/CounterWithRef.tsx";
+// import {useEffect} from "react";
 // import FocusInput from "./components/FocusInput.tsx";
 // import ViteIntro from "./components/ViteIntro/ViteIntro.tsx";
-import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
-import {useEffect} from "react";
-import {BrowserRouter, Routes, Route} from "react-router";
-import NameChanger from "./components/NameChanger.tsx";
-import HomePage from "./pages/HomePage.tsx";
-import Timer from "./components/Timer.tsx";
+// import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
 // import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
 // import Counter from "./components/Counter.tsx";
 // import NameChanger from "./components/NameChanger.tsx";
@@ -27,6 +23,19 @@ import Timer from "./components/Timer.tsx";
 // import NameChangerWithEffect from "./components/NameChangerWithEffect.tsx";
 // import {useEffect} from "react";
 // import Timer from "./components/Timer.tsx";
+import { BrowserRouter, Routes, Route } from "react-router";
+import NameChanger from "./components/NameChanger.tsx";
+import HomePage from "./pages/HomePage.tsx";
+import Timer from "./components/Timer.tsx";
+// import Layout from "./components/Layout.tsx";
+import RouterLayout from "./components/RouterLayout.tsx";
+import UserPage from "./pages/UserPage.tsx";
+import ControlledInput from "./components/ControlledInput.tsx";
+import UncontrolledInput from "./components/UncontrolledInput.tsx";
+import MultifieldForm from "./components/MultifieldForm.tsx";
+import MultifieldFormWithValidation from "./components/MultifieldFormWithValidation.tsx";
+import MultifieldFormWithZod from "./components/MultifieldFormWithZod.tsx";
+import MultifieldFormWithHookForm from "./components/MultifieldFormWithHookForm.tsx";
 
 function App() {
 
@@ -43,7 +52,6 @@ function App() {
     //   return () => clearInterval(id);
     // }, [])
 
-
     // useEffect(() => {
     //   history.pushState({page: 1}, "", "/page");
     //   history.replaceState({page: 1}, "", "/page1");
@@ -52,6 +60,7 @@ function App() {
     //     console.log(e.state);
     //   }
     // })
+
     return (
         <>
             {/*<ViteIntro />*/}
@@ -72,45 +81,66 @@ function App() {
             {/*</Card>*/}
 
             {/*<Layout>*/}
-                {/*<ArrowFunctionalComponentWithPropsType*/}
-                {/*  title="Is a Arrow Functional Component With 2 Props"*/}
-                {/*  description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, veniam."*/}
-                {/*/>*/}
-
-                {/*<FunctionalComponentWithState />*/}
-                {/*<ClassComponentWithState />*/}
-                {/*<Counter />*/}
-                {/*<NameChanger/>*/}
-                {/*<CounterWithMoreStates/>*/}
-                {/*<CounterAdvanced/>*/}
-
-                {/*<CounterWithCustomHook/>*/}
-                {/*<NameChangerWithEffect />*/}
-
-                {/*<Timer/>*/}
-                {/*<WindowSize/>*/}
-                {/*<FocusInput/>*/}
-                {/*<PreviewsValue/>*/}
-
-                {/*<CounterWithRef />*/}
-
+            {/*<ArrowFunctionalComponentWithPropsType*/}
+            {/*  title="Is a Arrow Functional Component With 2 Props"*/}
+            {/*  description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, veniam."*/}
+            {/*/>*/}
+            {/*<FunctionalComponentWithState />*/}
+            {/*<ClassComponentWithState />*/}
+            {/*<Counter />*/}
+            {/*<NameChanger/>*/}
+            {/*<CounterWithMoreStates/>*/}
+            {/*<CounterAdvanced/>*/}
+            {/*<CounterWithCustomHook/>*/}
+            {/*<NameChangerWithEffect />*/}
+            {/*<Timer/>*/}
+            {/*<WindowSize/>*/}
+            {/*<FocusInput/>*/}
+            {/*<PreviewsValue/>*/}
+            {/*<CounterWithRef />*/}
             {/*</Layout>*/}
 
             <BrowserRouter>
                 <Routes>
-                    <Route index element={<HomePage />}  />
-                    <Route path="name-changer" element={<NameChanger/>} />
-                    <Route path="timer" element={<Timer />} />
 
-                    }
+                    <Route element={<RouterLayout/>}>
 
+                        <Route index element={<HomePage />} />
+
+                        {/*<Route path="examples/name-changer" element={<NameChanger />} />*/}
+                        {/*<Route path="examples/timer" element={<Timer />} />*/}
+
+                        <Route path="examples?">
+                            <Route path="name-changer" element={<NameChanger/>}/>
+                            <Route path="timer" element={<Timer/>}/>
+                            <Route path="controlled-input" element={<ControlledInput/>}/>
+                            <Route path="uncontrolled-input" element={<UncontrolledInput/>}/>
+                            <Route path="multifield-form" element={<MultifieldForm/>}/>
+                            <Route path="multifield-form-validation" element={<MultifieldFormWithValidation/>}/>
+                            <Route path="multifield-form-zod" element={<MultifieldFormWithZod/>}/>
+                            <Route path="multifield-form-hook" element={<MultifieldFormWithHookForm/>}/>
+                            {/*<Route path="*" element={<ExamplePage/>}/>*/}
+                        </Route>
+
+                    </Route>
+
+                    {/*<Route path="users/:userId" element={<UserPage />} />*/}
+                    {/*<Route path="users/:userId/accounts" element={<UserAccountPage />} />*/}
+
+                    <Route path="users">
+                        <Route path=":userId">
+                            <Route index element={<UserPage/>}/>
+                            {/*<Route path="accounts" element={<UserAccountPage/>}/>*/}
+                        </Route>
+                    </Route>
+
+                    {/*<Route path="files/*" element={<FilePage />} />*/}
+
+                    {/*<Route path="*" element={<PageNotFound />}/>*/}
                 </Routes>
-
             </BrowserRouter>
-
 
         </>
     )
 }
 
-export default App
